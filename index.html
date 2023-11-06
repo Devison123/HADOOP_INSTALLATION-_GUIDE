@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 0;
+      background-color: rgb(189, 194, 230);
+    }
+    h1 {
+      font-size: 24px;
+      color: #090707;
+    }
+    h2 {
+      font-size: 20px;
+      color: #060505;
+    }
+    p {
+      font-size: 16px;
+      color: #555;
+    }
+    pre {
+      background-color: #f7f7f7;
+      padding: 10px;
+      border: 1px solid #985151;
+      border-radius: 5px;
+      font-size: 14px;
+      color: #070000;
+      overflow: auto;
+    }
+    code {
+      font-family: Consolas, monospace;
+      font-size: 14px;
+    }
+    .code-block {
+      background-color: #e9ebee;
+      padding: 20px;
+      margin: 20px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    .step {
+      margin-top: 20px;
+    }
+    .image {
+      max-width: 100%;
+      border: 1px solid #e4e5e6;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="code-block">
+    <h1>CIA-1 DEVISON PRINCE (22122118)</h1>
+    <h2>Hadoop Installation Guide</h2>
+  </div>
+  
+  <div class="code-block">
+    <h2>Step 1: Install Java Development Kit</h2>
+    <p>Before you can set up Hadoop on your Ubuntu system, you need to ensure that you have the Java Development Kit (JDK) installed. Hadoop relies on Java, and we recommend using Java 8 since some Hadoop components, like Hive, work best with this version.</p>
+    <p>To install the Java Development Kit, open your terminal and execute the following command:</p>
+    <pre><code>sudo apt update && sudo apt install openjdk-8-jdk</code></pre>
+    <p>The above command updates your package list and installs the OpenJDK 8 development kit, which is essential for running Hadoop on your system.</p>
+    <img class="image" src="image16.PNG" alt="Screenshot">
+    <p>After the installation is complete, you can proceed to the next steps to set up Hadoop.</p>
+  </div>
+  
+
+  <div class="code-block">
+    <h2>Step 2: Verify the Java version</h2>
+    <p>After successfully installing the Java Development Kit (JDK) in the previous step, it's important to verify the installed Java version to ensure that everything is set up correctly.</p>
+    <p>You can do this by opening your terminal and running the following command:</p>
+    <pre><code>java -version</code></pre>
+    <p>When you execute this command, it will display information about the installed Java version, including the version number and other details. This verification step ensures that Hadoop will work with the Java version you've installed.</p>
+    <img class="image" src="image14.PNG" alt="Screenshot">
+    <p>If the command displays the Java version without errors, you can proceed with the Hadoop installation. However, if you encounter any issues, you may need to troubleshoot your Java installation before continuing with Hadoop setup.</p>
+  </div>
+  
+
+  <div class="code-block">
+    <h2>Step 3: Install SSH</h2>
+    <p>SSH (Secure Shell) is an essential component for secure communication within the Hadoop cluster. It provides a secure way to access and manage your Hadoop nodes, ensuring data integrity, confidentiality, and efficient distributed processing. This step involves installing SSH on your Ubuntu system.</p>
+    <p>You can easily install SSH by opening your terminal and running the following command:</p>
+    <pre><code>sudo apt install ssh</code></pre>
+    <p>Once the installation is complete, your system will have the necessary SSH components to support secure communication and authentication between nodes in your Hadoop cluster.</p>
+    <img class="image" src="image16.PNG" alt="Screenshot">
+    <p>Having SSH properly configured is crucial for seamless interaction and data transfer within your Hadoop environment. Ensure that SSH is correctly set up before proceeding with Hadoop installation and configuration.</p>
+  </div>
+  
+
+  <div class="code-block">
+    <h2>Step 4: Create the Hadoop User</h2>
+    <p>Creating a dedicated user for Apache Hadoop is a crucial step in the installation process. By isolating Hadoop components within their own user account, you ensure proper control and security.</p>
+    <p>To create the "hadoop" user, open your terminal and run the following command:</p>
+    <pre><code>sudo adduser hadoop</code></pre>
+    <p>This command will guide you through the user creation process. You can set a password and provide additional information as needed. It's essential to remember the password you set, as you'll be using this user account for Hadoop-related tasks.</p>
+    <img class="image" src="image1.PNG" alt="Screenshot">
+    <p>By having a dedicated user for Hadoop, you can manage and secure Hadoop components more effectively. It's a best practice in Hadoop installations to maintain good security and isolation between Hadoop and other system components.</p>
+  </div>
+  
+
+  <div class="code-block">
+    <h2>Step 5: Switch User</h2>
+    <p>Now that you've created the dedicated "hadoop" user, it's time to switch to this user account. This ensures that all subsequent Hadoop-related operations are performed within the dedicated environment.</p>
+    <p>To switch to the "hadoop" user, open your terminal and use the following command:</p>
+    <pre><code>su - hadoop</code></pre>
+    <p>After executing this command, you'll be working within the "hadoop" user's environment. This is essential for maintaining proper isolation between Hadoop and other system components. It also helps in managing permissions and access controls effectively.</p>
+    <p>Once you've switched to the "hadoop" user, you'll be ready to continue with the Hadoop installation process and configurations, ensuring that all operations are carried out within the designated Hadoop user account.</p>
+  </div>
+  
+
+  <div class="code-block">
+    <h2>Step 6: Configure SSH</h2>
+    <p>Configuring SSH is a crucial step to ensure secure communication within your Hadoop cluster. You'll set up SSH keys for password-less authentication, enhancing security and efficiency.</p>
+    <p>Follow these steps to configure SSH:</p>
+    <ol>
+      <li>Open your terminal or command prompt.</li>
+      <li>Execute the following command to generate an SSH key pair:</li>
+    </ol>
+    <pre><code>ssh-keygen -t rsa</code></pre>
+    <p>This command generates a public and private key pair. The private key should be kept secure, and the public key will be used for authentication.</p>
+    <img class="image" src="image7.PNG" alt="Screenshot">
+    <p>Once the key pair is generated, you can proceed with the next steps in the Hadoop installation process, utilizing the SSH keys for secure communication between nodes in your Hadoop cluster.</p>
+  </div>
+  
+
+  <div class="code-block">
+    <h2>Step 7: Set Permissions</h2>
+    <p>Setting permissions is an essential part of configuring SSH to ensure the security and functionality of your Hadoop installation. This step involves two important actions:</p>
+    <ol>
+      <li>Appending your generated public SSH key to the authorized keys file.</li>
+      <li>Applying the correct permissions to the authorized keys file.</li>
+    </ol>
+    <p>Follow these steps to set permissions:</p>
+    <ol>
+      <li>Open your terminal or command prompt.</li>
+      <li>Append your SSH public key to the authorized keys file by executing the following command:</li>
+    </ol>
+    <pre><code>cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys</code></pre>
+    <p>By appending the public key to authorized_keys, you enable password-less authentication for the "hadoop" user.</p>
+    <ol start="3">
+      <li>Apply the correct permissions to the authorized keys file using the following command:</li>
+    </ol>
+    <pre><code>chmod 640 ~/.ssh/authorized_keys</code></pre>
+    <p>Setting the permissions to 640 ensures that the authorized keys file is readable only by the owner and group, enhancing security.</p>
+    <p>With these permissions correctly set, you've completed an important security configuration for your Hadoop cluster, allowing for secure communication between nodes.</p>
+  </div>
+  
+
+  <div class="code-block">
+    <h2>Step 8: SSH to the localhost</h2>
+    <p>SSH (Secure Shell) is crucial for secure communication within your Hadoop cluster. Before proceeding with cluster setup and configuration, it's essential to test the SSH connectivity to your local machine (localhost).</p>
+    <p>When you run this command, you'll be prompted to authenticate the host by adding RSA keys to known hosts. This is an important step in establishing secure communication.</p>
+    <p>Here's how you can perform this step:</p>
+    <ol>
+      <li>Open your terminal or command prompt.</li>
+      <li>Execute the following command:</li>
+    </ol>
+    <pre><code>ssh localhost</code></pre>
+    <p>By running this command, you verify that SSH is set up correctly and can be used for secure communication within the Hadoop cluster. It also helps ensure the integrity, confidentiality, and efficiency of distributed processing.</p>
+    <img class="image" src="image11.PNG" alt="Screenshot">
+    <p>If the authentication process is successful, you're ready to proceed with the next steps in setting up your Hadoop cluster.</p>
+  </div>
+  
+
+  <div class="code-block">
+    <h2>Step 9: Switch User Again</h2>
+    <p>Throughout the Hadoop installation and configuration process, you'll often need to work with specific user accounts, such as the "hadoop" user. This step involves switching to the "hadoop" user account, which you've previously created.</p>
+    <p>Here's why this step is important:</p>
+    <ul>
+      <li>Running Hadoop services and commands with dedicated user accounts is a security best practice. It helps isolate the Hadoop environment and its resources from other users on your system.</li>
+      <li>By switching to the "hadoop" user account, you ensure that Hadoop components are managed under the appropriate user context, which simplifies access control and resource management.</li>
+    </ul>
+    <p>To switch to the "hadoop" user account, follow these instructions:</p>
+    <ol>
+      <li>Open your terminal or command prompt.</li>
+      <li>Execute the following command:</li>
+    </ol>
+    <pre><code>su - hadoop</code></pre>
+    <p>After running this command, you'll be working in the context of the "hadoop" user account, allowing you to perform Hadoop-related tasks securely and efficiently.</p>
+    <p>Continue with the installation and configuration steps in the subsequent sections of this guide while operating as the "hadoop" user.</p>
+  </div>
+  
+
+  <div class="code-block">
+    <h2>Step 10: Install Hadoop</h2>
+    <p>At this stage, you'll be downloading the Hadoop distribution and performing the initial setup. Hadoop is the core component of your big data processing cluster.</p>
+    <p>Here are the details of this step:</p>
+    <ul>
+      <li><strong>Download Hadoop:</strong> The first command downloads the Hadoop distribution from the official Apache Hadoop website. This specific example uses Hadoop version 3.3.6, but you can modify the URL to download a different version if needed.</li>
+      <li><strong>Unzip Hadoop:</strong> Once the download is complete, the second command extracts the downloaded Hadoop archive. It's important to unpack the contents to make it accessible for configuration and use.</li>
+      <li><strong>Optional Folder Renaming:</strong> The last command provides an optional step. It renames the extracted Hadoop folder to a simpler name (in this case, "hadoop"). Renaming can make paths and configuration more straightforward by removing version-specific information from the folder name.</li>
+    </ul>
+    <p>To proceed with installing Hadoop, follow these steps:</p>
+    <ol>
+      <li>Open your terminal or command prompt.</li>
+      <li>Execute the following commands one by one:</li>
+    </ol>
+    <pre><code>wget https://dlcdn.apache.org/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz</code></pre>
+    <pre><code>tar -xvzf hadoop-3.3.6.tar.gz</code></pre>
+    <pre><code>mv hadoop-3.3.6 hadoop</code></pre>
+    <p>After completing these steps, you'll have Hadoop downloaded and ready for further configuration and setup.</p>
+  </div>
+  
+  <div class="code-block">
+    <h2>Step 11: Configure Hadoop and Java Environment Variables</h2>
+    <pre><code>nano ~/.bashrc</code></pre>
+    <p>Append the below lines to the file:</p>
+    <pre><code>export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+  export HADOOP_HOME=/home/hadoop/hadoop
+  export HADOOP_INSTALL=$HADOOP_HOME
+  export HADOOP_MAPRED_HOME=$HADOOP_HOME
+  export HADOOP_COMMON_HOME=$HADOOP_HOME
+  export HADOOP_HDFS_HOME=$HADOOP_HOME
+  export HADOOP_YARN_HOME=$HADOOP_HOME
+  export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+  export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin
+  export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib/native"</code></pre>
+    <p>After adding these lines to the ~/.bashrc file, make sure to save the file and exit the text editor.</p>
+    <img class="image" src="1122.png" alt="Screenshot">
+  </div>
+  
+  
+  
+  <div class="code-block">
+    <h2>Step 11: Configuring Hadoop</h2>
+    <pre><code>cd hadoop/</code></pre>
+    <pre><code>mkdir -p ~/hadoopdata/hdfs/{namenode,datanode}</code></pre>
+    <p>Next, edit the core-site.xml file and update it with your system's hostname. Open the core-site.xml file:</p>
+    <pre><code>nano $HADOOP_HOME/etc/hadoop/core-site.xml</code></pre>
+    <p>Change the "fs.defaultFS" property to match your system's hostname:</p>
+    <pre><code>&lt;configuration&gt;
+      &lt;property&gt;
+          &lt;name&gt;fs.defaultFS&lt;/name&gt;
+          &lt;value&gt;hdfs://localhost:9000&lt;/value&gt;
+      &lt;/property&gt;
+  &lt;/configuration&gt;</code></pre>
+  <img class="image" src="cd.png" alt="Screenshot">
+    <p>Save and close the file.</p>
+    <p>Proceed to edit the hdfs-site.xml file:</p>
+    <pre><code>nano $HADOOP_HOME/etc/hadoop/hdfs-site.xml</code></pre>
+    <p>Update the "dfs.replication," "dfs.namenode.name.dir," and "dfs.datanode.data.dir" properties as shown below:</p>
+    <pre><code>&lt;configuration&gt;
+      &lt;property&gt;
+          &lt;name&gt;dfs.replication&lt;/name&gt;
+          &lt;value&gt;1&lt;/value&gt;
+      &lt;/property&gt;
+      &lt;property&gt;
+          &lt;name&gt;dfs.namenode.name.dir&lt;/name&gt;
+          &lt;value&gt;file:///home/hadoop/hadoopdata/hdfs/namenode&lt;/value&gt;
+      &lt;/property&gt;
+      &lt;property&gt;
+          &lt;name&gt;dfs.datanode.data.dir&lt;/name&gt;
+          &lt;value&gt;file:///home/hadoop/hadoopdata/hdfs/datanode&lt;/value&gt;
+      &lt;/property&gt;
+  &lt;/configuration&gt;</code></pre>
+  <img class="image" src="ef.png" alt="Screenshot">
+    <p>Continue by editing the mapred-site.xml file:</p>
+    <pre><code>nano $HADOOP_HOME/etc/hadoop/mapred-site.xml</code></pre>
+    <p>Apply the following changes:</p>
+    <pre><code>&lt;configuration&gt;
+      &lt;property&gt;
+          &lt;name&gt;yarn.app.mapreduce.am.env&lt;/name&gt;
+          &lt;value&gt;HADOOP_MAPRED_HOME=$HADOOP_HOME/home/hadoop/hadoop/bin/hadoop&lt;/value&gt;
+      &lt;/property&gt;
+      &lt;property&gt;
+          &lt;name&gt;mapreduce.map.env&lt;/name&gt;
+          &lt;value&gt;HADOOP_MAPRED_HOME=$HADOOP_HOME/home/hadoop/hadoop/bin/hadoop&lt;/value&gt;
+      &lt;/property&gt;
+      &lt;property&gt;
+          &lt;name&gt;mapreduce.reduce.env&lt;/name&gt;
+          &lt;value&gt;HADOOP_MAPRED_HOME=$HADOOP_HOME/home/hadoop/hadoop/bin/hadoop&lt;/value&gt;
+      &lt;/property&gt;
+  &lt;/configuration&gt;</code></pre>
+  <img class="image" src="ab.png" alt="Screenshot">
+    <p>Lastly, configure the yarn-site.xml file:</p>
+    <pre><code>nano $HADOOP_HOME/etc/hadoop/yarn-site.xml</code></pre>
+    <p>Update it as follows:</p>
+    <pre><code>&lt;configuration&gt;
+      &lt;property&gt;
+          &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;
+          &lt;value&gt;mapreduce_shuffle&lt;/value&gt;
+      &lt;/property&gt;
+  &lt;/configuration&gt;</code></pre>
+  <img class="image" src="gh.png" alt="Screenshot">
+    <p>Save and close the file.</p>
+  </div>
+  
+  
+  <div class="code-block">
+    <h2>Step 12: Start Hadoop Cluster</h2>
+    <p>Now that you've configured Hadoop, it's time to start your Hadoop cluster. This step involves initializing the Namenode and launching various Hadoop services.</p>
+    <p>Here are the key actions in this step:</p>
+    <ol>
+      <li><strong>Initialize Namenode:</strong> The first command, "hdfs namenode -format," initializes the Namenode. This command prepares the filesystem for use and ensures that it's in a consistent state.</li>
+      <li><strong>Start Hadoop Services:</strong> The second command, "start-all.sh," is used to start various Hadoop services. This includes services like the Namenode, Datanode, ResourceManager, and NodeManager, among others.</li>
+    </ol>
+    <p>Here's how to execute these commands:</p>
+    <ol>
+      <li>Open your terminal or command prompt.</li>
+      <li>Execute the following commands:</li>
+    </ol>
+    <pre><code>hdfs namenode -format</code></pre>
+    <img class="image" src="image6.PNG" alt="Screenshot">
+    <pre><code>start-all.sh</code></pre>
+    <img class="image" src="image8.PNG" alt="Screenshot">
+    <p>After running these commands, your Hadoop cluster will be up and running, and you can verify its status using the "jps" command to check the running Java processes. This step is essential to ensure that your Hadoop cluster is operational and ready to process data.</p>
+    <img class="image" src="image17.PNG" alt="Screenshot">
+  </div>
+  
+  
+  <div class="code-block">
+    <h2>Step 13: Access Hadoop Namenode and Resource Manager</h2>
+    <p>If you've successfully started your Hadoop cluster, you can now access the Hadoop Namenode and Resource Manager via a web browser. Follow these steps to access these web interfaces:</p>
+    <ol>
+      <li><strong>Install net-tools (if not already installed):</strong> This step is optional but may be required if you don't have the necessary network tools installed. You can install it with the following command:</li>
+      <img class="image" src="image18.PNG" alt="Screenshot">
+    </ol>
+    <pre><code>sudo apt install net-tools</code></pre>
+    <ol start="2">
+      <li><strong>Determine your IP address:</strong> Use the following command to find your system's IP address:</li>
+    </ol>
+    <pre><code>ifconfig</code></pre>
+    <p>For example, if your IP address is 192.168.1.6, you can access the Hadoop Namenode by opening your web browser and visiting the following URL:</p>
+    <p><a href="http://192.168.1.6:9870">http://192.168.1.6:9870</a></p>
+    <img class="image" src="NODE.PNG" alt="Namenode Screenshot">
+    <p>To access the Hadoop Resource Manager, visit the following URL:</p>
+    <p><a href="http://192.168.1.6:8088">http://192.168.1.6:8088</a></p>
+    <img class="image" src="RES_MAN.PNG" alt="Resource Manager Screenshot">
+  </div>
+  
+  
+  <div class="code-block">
+    <h2>Step 14: Verify the Hadoop Cluster</h2>
+    <p>After setting up your Hadoop cluster, you can perform some basic checks to ensure that everything is functioning correctly. Follow these steps to verify your Hadoop cluster:</p>
+    <ol>
+      <li><strong>Create test directories in the HDFS:</strong> Use the following commands to create directories in the Hadoop Distributed File System (HDFS):</li>
+    </ol>
+    <pre><code>hdfs dfs -mkdir /test1</code></pre>
+    <pre><code>hdfs dfs -mkdir /logs</code></pre>
+    <ol start="2">
+      <li><strong>List directories in HDFS:</strong> To ensure that the directories are created, run the following command:</li>
+    </ol>
+    <pre><code>hdfs dfs -ls /</code></pre>
+    <p>Additionally, you can upload log files from your host machine into the Hadoop file system. For example, to put log files into the Hadoop file system, you can use the following command:</p>
+    <pre><code>hdfs dfs -put /var/log/* /logs/</code></pre>
+    <img class="image" src="FILE_VIEW.PNG" alt="File View Screenshot">
+    <p>You can also verify these files and directories in the Hadoop web interface. To do this, follow these steps:</p>
+    <ol>
+      <li><strong>Access the Hadoop web interface:</strong> Open your web browser and visit the Hadoop web interface URL.</li>
+      <li><strong>Browse the file system:</strong> Once in the web interface, you can click on the "Utilities" or a similar section to browse the Hadoop file system and verify the presence of your files and directories.</li>
+    </ol>
+  </div>
+  
+  
+  <div class="code-block">
+    <h2>Step 15: Stop Hadoop Services</h2>
+    <p>When you're done using your Hadoop cluster or need to shut it down for maintenance, you can stop all Hadoop services. To do this, execute the following command as the "hadoop" user:</p>
+    <pre><code>stop-all.sh</code></pre>
+    <p>This command will gracefully stop all running Hadoop services. It's essential to stop the services properly to ensure a clean shutdown.</p>
+  </div>
+  
+  
+</body>
+</html>
